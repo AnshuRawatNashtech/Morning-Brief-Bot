@@ -1,0 +1,119 @@
+{
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "610ef817-2ac0-4a47-809e-4b2bd7105e74",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://newsapi.org/v2/top-headlines?country=in&pageSize=5&apiKey=df23ff4b22564630bab1cb4a4f190079",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "968efbb5-7f40-4435-9290-be4294c28919",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "https://api.openweathermap.org/data/2.5/weather?q=New Delhi&units=metric&appid=0ea0f552ec9bf3eb8f75190e73988e33",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "7c6a713d-02d6-4aea-82bb-5d179aed8965",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        688,
+        48
+      ],
+      "id": "1c7dd336-b59f-4f01-ba00-d168d0ac0579",
+      "name": "Get many events",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "goFNUXnnZ0XmKvu1",
+          "name": "Google Calendar account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "87f32a03-5b16-46e8-87c7-50c5b8e064eb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a2fecc2fa429c51621c362fc69e60350052c01d93d4504644fd90310a5daf8ba"
+  },
+  "id": "yFcHlLtn4zfjfI8q",
+  "tags": []
+}
